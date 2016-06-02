@@ -15,9 +15,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/welcome"
         android:id="@+id/textView"
+        android:layout_marginTop="66dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +34,57 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/club_page"
         android:id="@+id/textView3"
-        android:layout_marginTop="81dp"
-        android:layout_below="@+id/textView2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AirHorn"
+        android:id="@+id/buttonAirhorn"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/buttonClap"
+        android:layout_alignStart="@+id/buttonClap" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John"
+        android:id="@+id/buttonJohn"
+        android:layout_alignTop="@+id/buttonAirhorn"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gangster"
+        android:id="@+id/buttonGangster"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/buttonJohn"
+        android:layout_alignLeft="@+id/buttonJohn"
+        android:layout_alignStart="@+id/buttonJohn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clap"
+        android:id="@+id/buttonClap"
+        android:layout_above="@+id/buttonStop"
+        android:layout_alignLeft="@+id/buttonStop"
+        android:layout_alignStart="@+id/buttonStop" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:id="@+id/buttonStop"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/buttonGangster"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/buttonGangster"
+        android:layout_alignEnd="@+id/buttonGangster" />
 </RelativeLayout>

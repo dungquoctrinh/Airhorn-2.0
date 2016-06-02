@@ -1,6 +1,8 @@
 package developer.campos.kris.airhornapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -9,20 +11,23 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * An airhorn app. Designed for Cal Poly Mobile App Dev Club's booth at the 2016 Open House Club Fair.
+ * This modify version add more sounds
  *
- * A listener is set whenever the application is active and watches for phone movement.
- *
- * @author Kris Campos
- * @version 1.0 - Initial Version - 15 April 2016
+ * @author Dung Trinh
+ * @version 2.0 - Initial Version - May 15 2015
  */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
-    private MediaPlayer airhorn; // airhorn sound
+    public MediaPlayer media; // airhorn sound
     private Sensor senAccelerometer;
     private SensorManager sensorManager;
+    protected Button cena, horn, clap, gangster, stop;
+
 
     // Used for determining when the device is shaking
     private long lastUpdate = 0;
@@ -36,8 +41,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Initialize music player
-        airhorn = MediaPlayer.create(this, R.raw.airhorn);
+        // setButton
+        cena = (Button) findViewById(R.id.buttonJohn);
+        horn = (Button) findViewById(R.id.buttonAirhorn);
+        clap = (Button) findViewById(R.id.buttonClap);
+        gangster = (Button) findViewById(R.id.buttonGangster);
+        stop = (Button) findViewById(R.id.buttonStop);
+        setButton(this);
+
+        //media = MediaPlayer.create(this, R.raw.airhorn);
+        //media = null;
 
         // Initialize accelerometer controls
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -98,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if(speed > SHAKE_THRESHOLD) {
                     /* INSERT DESIRED ACTION HERE */
                     Log.i("Playing airhorn...", "");
-                    airhorn.start(); // play airhorn music
+                    media.start(); // play airhorn music
                 }
 
                 last_x = x;
@@ -120,5 +135,42 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      */
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+
+    public void setButton(final Context mainClass)
+    {
+        this.horn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                media = MediaPlayer.create(mainClass, R.raw.airhorn);
+                media.start();
+            }
+        });
+
+        this.cena.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                media = MediaPlayer.create(mainClass,R.raw.john_cena_theme);
+                media.start();
+            }
+        });
+        this.clap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                media = MediaPlayer.create(mainClass,R.raw.clap);
+                media.start();
+            }
+        });
+
+        this.stop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                media.stop();
+            }
+        });
+
+        this.gangster.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                media = MediaPlayer.create(mainClass,R.raw.gangster);
+                media.start();
+            }
+        });
     }
 }
